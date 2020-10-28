@@ -1,16 +1,39 @@
-# anchor-markdown-header [![build status](https://secure.travis-ci.org/thlorenz/anchor-markdown-header.png)](http://travis-ci.org/thlorenz/anchor-markdown-header)
+# anchor-markdown-header
+
+[![npm version](https://badge.fury.io/js/%40technote-space%2Fanchor-markdown-header.svg)](https://badge.fury.io/js/%40technote-space%2Fanchor-markdown-header)
+[![CI Status](https://github.com/technote-space/anchor-markdown-header/workflows/CI/badge.svg)](https://github.com/technote-space/anchor-markdown-header/actions)
+[![codecov](https://codecov.io/gh/technote-space/anchor-markdown-header/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/anchor-markdown-header)
+[![CodeFactor](https://www.codefactor.io/repository/github/technote-space/anchor-markdown-header/badge)](https://www.codefactor.io/repository/github/technote-space/anchor-markdown-header)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/anchor-markdown-header/blob/master/LICENSE)
 
 Generates an anchor for a markdown header.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<details>
+<summary>Details</summary>
+
+- [Install](#install)
+- [Example](#example)
+- [API](#api)
+
+</details>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Install
+```shell script
+yarn add @technote-space/anchor-markdown-header
+```
 
 ## Example
 
 ```js
-var anchor = require('anchor-markdown-header');
+import anchor from '@technote-space/anchor-markdown-header';
 
 anchor('"playerJoined" (player)'); 
 // --> ["playerJoined" (player)](#playerjoined-player)
 
-anchor('fs.rename(oldPath, newPath, [callback])', 'nodejs.org', 'fs') 
+anchor('fs.rename(oldPath, newPath, [callback])', 'nodejs.org', 'fs') ;
 // --> [fs.rename(oldPath, newPath, [callback])](#fs_fs_rename_oldpath_newpath_callback)
 
 // github.com mode is default
