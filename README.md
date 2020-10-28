@@ -8,8 +8,17 @@
 
 Generates an anchor for a markdown header.
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<details>
+<summary>Details</summary>
+
+- [Install](#install)
+- [Example](#example)
+- [API](#api)
+
+</details>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Install
 ```shell script
