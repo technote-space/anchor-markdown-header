@@ -1,7 +1,7 @@
 import emojiRegex from 'emoji-regex';
 
 // https://github.com/joyent/node/blob/192192a09e2d2e0d6bdd0934f602d2dbbf10ed06/tools/doc/html.js#L172-L183
-export const getNodejsId = (text: string, repetition?: string): string => {
+export const getNodejsId = (text: string, repetition?: number): string => {
   text = text.replace(/[^a-z0-9]+/g, '_');
   text = text.replace(/^_+|_+$/, '');
   text = text.replace(/^([^a-z])/, '_$1');
@@ -29,7 +29,7 @@ export const getBasicGithubId = (text: string): string => {
     .replace(/[。？！，、；：“”【】（）〔〕［］﹃﹄ ‘’﹁﹂—…－～《》〈〉「」]/g, '');
 };
 
-export const getGithubId = (text: string, repetition?: string): string => {
+export const getGithubId = (text: string, repetition?: number): string => {
   text = getBasicGithubId(text);
 
   // If no repetition, or if the repetition is 0 then ignore. Otherwise append '-' and the number.
@@ -43,7 +43,7 @@ export const getGithubId = (text: string, repetition?: string): string => {
   return text;
 };
 
-export const getBitbucketId = (text: string, repetition?: string): string => {
+export const getBitbucketId = (text: string, repetition?: number): string => {
   text = 'markdown-header-' + getBasicGithubId(text);
 
   // BitBucket condenses consecutive hyphens (GitHub doesn't)
@@ -78,7 +78,7 @@ export const getGhostId = (text: string): string => {
 };
 
 // see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/user/markdown.md#header-ids-and-links
-export const getGitlabId = (text: string, repetition?: string): string => {
+export const getGitlabId = (text: string, repetition?: number): string => {
   text = text
     .replace(/<(.*)>(.*)<\/\1>/g, '$2') // html tags
     .replace(/!\[.*]\(.*\)/g, '')      // image tags
@@ -98,9 +98,9 @@ export const getGitlabId = (text: string, repetition?: string): string => {
   return text;
 };
 
-export const anchor = (header: string, mode?: string, repetition?: string, moduleName?: string): string | never => {
+export const anchor = (header: string, mode?: string, repetition?: number, moduleName?: string): string | never => {
   mode                = mode || 'github.com';
-  let replace: ((text: string, repetition?: string) => string) | ((text: string) => string);
+  let replace: ((text: string, repetition?: number) => string) | ((text: string) => string);
   let customEncodeURI = encodeURI;
 
   switch (mode) {
@@ -126,7 +126,7 @@ export const anchor = (header: string, mode?: string, repetition?: string, modul
         throw new Error('Need module name to generate proper anchor for ' + mode);
       }
 
-      replace = (hd: string, repetition?: string): string => {
+      replace = (hd: string, repetition?: number): string => {
         return getNodejsId(moduleName + '.' + hd, repetition);
       };
       break;
