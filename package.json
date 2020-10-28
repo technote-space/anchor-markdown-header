@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/anchor-markdown-header",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Generates an anchor for a markdown header.",
   "keywords": [
     "markdown",
@@ -28,6 +28,7 @@
     }
   ],
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "files": [
     "build"
   ],
@@ -40,7 +41,7 @@
     "update": "npx npm-check-updates -u && yarn install && yarn upgrade && yarn audit"
   },
   "dependencies": {
-    "emoji-regex": "~9.2.0"
+    "emoji-regex": "^9.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
