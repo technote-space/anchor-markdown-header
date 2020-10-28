@@ -1,5 +1,5 @@
 {
-  "name": "anchor-markdown-header",
+  "name": "@technote-space/anchor-markdown-header",
   "version": "1.0.0",
   "description": "Generates an anchor for a markdown header.",
   "keywords": [
