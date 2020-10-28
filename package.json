@@ -40,7 +40,7 @@
     "update": "npx npm-check-updates -u && yarn install && yarn upgrade && yarn audit"
   },
   "dependencies": {
-    "emoji-regex": "~9.2.0"
+    "emoji-regex": "^9.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
