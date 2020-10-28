@@ -2,6 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40technote-space%2Fanchor-markdown-header.svg)](https://badge.fury.io/js/%40technote-space%2Fanchor-markdown-header)
 [![CI Status](https://github.com/technote-space/anchor-markdown-header/workflows/CI/badge.svg)](https://github.com/technote-space/anchor-markdown-header/actions)
+[![codecov](https://codecov.io/gh/technote-space/anchor-markdown-header/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/anchor-markdown-header)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/anchor-markdown-header/badge)](https://www.codefactor.io/repository/github/technote-space/anchor-markdown-header)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/anchor-markdown-header/blob/master/LICENSE)
 
