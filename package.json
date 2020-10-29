@@ -33,7 +33,7 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./build && tsc",
     "cover": "jest --coverage",
     "lint": "eslint 'src/**/*.ts' '__tests__/**/*.ts' --cache",
     "lint:fix": "eslint --fix 'src/**/*.ts' '__tests__/**/*.ts'",
