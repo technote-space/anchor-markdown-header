@@ -98,45 +98,45 @@ export const getGitlabId = (text: string, repetition?: number): string => {
   return text;
 };
 
-export const anchor = (header: string, mode?: string, repetition?: number, moduleName?: string): string | never => {
-  mode                = mode || 'github.com';
-  let replace: ((text: string, repetition?: number) => string) | ((text: string) => string);
-  let customEncodeURI = encodeURI;
-
+export const getReplaceMethod = (mode: string, repetition?: number, moduleName?: string): ((text: string, repetition?: number) => string) | never => {
   switch (mode) {
     case 'github.com':
-      replace         = getGithubId;
-      customEncodeURI = (uri: string): string => {
-        const newURI = encodeURI(uri);
-
-        // encodeURI replaces the zero width joiner character
-        // (used to generate emoji sequences, e.g.Female Construction Worker 👷🏼‍♀️)
-        // github doesn't URL encode them, so we replace them after url encoding to preserve the zwj character.
-        return newURI.replace(/%E2%80%8D/g, '\u200D');
-      };
-      break;
+      return getGithubId;
     case 'bitbucket.org':
-      replace = getBitbucketId;
-      break;
+      return getBitbucketId;
     case 'gitlab.com':
-      replace = getGitlabId;
-      break;
+      return getGitlabId;
     case 'nodejs.org':
       if (!moduleName) {
         throw new Error('Need module name to generate proper anchor for ' + mode);
       }
 
-      replace = (hd: string, repetition?: number): string => {
+      return (hd: string, repetition?: number): string => {
         return getNodejsId(moduleName + '.' + hd, repetition);
       };
-      break;
     case 'ghost.org':
-      replace = getGhostId;
-      break;
+      return getGhostId;
     default:
       throw new Error('Unknown mode: ' + mode);
   }
+};
 
+export const getEncodeUriMethod = (mode: string): ((uri: string) => string) => {
+  if (mode === 'github.com') {
+    return (uri: string): string => {
+      const newURI = encodeURI(uri);
+
+      // encodeURI replaces the zero width joiner character
+      // (used to generate emoji sequences, e.g.Female Construction Worker 👷🏼‍♀️)
+      // github doesn't URL encode them, so we replace them after url encoding to preserve the zwj character.
+      return newURI.replace(/%E2%80%8D/g, '\u200D');
+    };
+  }
+
+  return encodeURI;
+};
+
+export const getUrlHash = (header: string, mode: string, repetition?: number, moduleName?: string): string => {
   const asciiOnlyToLowerCase = (input: string): string => {
     let result = '';
     [...Array(input.length).keys()].forEach(index => {
@@ -150,7 +150,12 @@ export const anchor = (header: string, mode?: string, repetition?: number, modul
     return result;
   };
 
-  return '[' + header + '](#' + customEncodeURI(replace(asciiOnlyToLowerCase(header.trim()), repetition)) + ')';
+  return getEncodeUriMethod(mode)(
+    getReplaceMethod(mode, repetition, moduleName)(
+      asciiOnlyToLowerCase(header.trim()), repetition,
+    ),
+  );
 };
 
+export const anchor = (header: string, mode?: string, repetition?: number, moduleName?: string): string | never => '[' + header + '](#' + getUrlHash(header, mode || 'github.com', repetition, moduleName) + ')';
 export default anchor;
